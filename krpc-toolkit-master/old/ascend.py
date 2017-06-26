@@ -21,8 +21,6 @@ def launch_to_altitude(target_altitude):
     ut = conn.add_stream(getattr, conn.space_center, 'ut')
     altitude = conn.add_stream(getattr, vessel.flight(), 'mean_altitude')
     apoapsis = conn.add_stream(getattr, vessel.orbit, 'apoapsis_altitude')
-    periapsis = conn.add_stream(getattr, vessel.orbit, 'periapsis_altitude')
-    eccentricity = conn.add_stream(getattr, vessel.orbit, 'eccentricity')
 
     # Pre-launch setup
     vessel.control.sas = False

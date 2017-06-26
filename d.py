@@ -1,9 +1,12 @@
-import krpc
 import time
-from krpctoolkit.launch import Ascend
-from krpctoolkit.staging import AutoStage
-from krpctoolkit.maneuver import circularize, ExecuteNode
 
+from krpctoolkit.maneuver import circularize, ExecuteNode
+from krpctoolkit.staging import AutoStage
+
+# jenkins_test
+asd
+
+print)
 target_altitude = 120000
 
 conn = krpc.connect(name='Kerbal-X')
