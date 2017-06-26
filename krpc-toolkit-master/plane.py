@@ -1,9 +1,12 @@
 import time
 
-import krpc
 from krpctoolkit.attitude import *
 from krpctoolkit.throttle import *
 
+# jenkins_test
+asd
+
+print)
 conn = krpc.connect(name='Plane Stabiliser')
 vessel = conn.space_center.active_vessel
 
