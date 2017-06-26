@@ -9,10 +9,10 @@ test:
 	cd $(SRC_DIR) && nosetests --verbose --with-xunit --xunit-file=../xunit.xml --with-xcoverage --xcoverage-file=../coverage.xml || :
 
 flakes:
-	find $(SRC_DIR) -name *.py|egrep -v '^./tests/'|xargs pyflakes  > pyflakes.log || :
+	find $(SRC_DIR) -name '*.py' |egrep -v '^./tests/'|xargs pyflakes  > pyflakes.log || :
 
 lint:
-	find $(SRC_DIR) -name *.py|egrep -v '^./tests/' | xargs pylint --output-format=parseable --reports=y > pylint.log || :
+	find $(SRC_DIR) -name '*.py' |egrep -v '^./tests/' | xargs pylint --output-format=parseable --reports=y > pylint.log || :
 
 clone:
 	clonedigger --cpd-output $(SRC_DIR) || :
