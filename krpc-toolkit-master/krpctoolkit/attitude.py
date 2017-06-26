@@ -1,7 +1,9 @@
 # https://ghowen.me/build-your-own-quadcopter-autopilot/
-import numpy as np
-from krpctoolkit.pid import PIDController
 import math
+
+import numpy as np
+
+from .pid import PIDController
 
 
 class RollController(object):
@@ -65,6 +67,7 @@ class RotationRateController(object):
         return np.array((pitch, yaw, roll))
 
 
+# noinspection PyAttributeOutsideInit,PyAttributeOutsideInit
 class AttitudeController(object):
     def __init__(self, conn, vessel, target_direction, target_roll, ref):
         self.target_direction = target_direction

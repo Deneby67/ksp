@@ -1,6 +1,7 @@
-import krpc
 import math
 from collections import defaultdict
+
+import krpc
 
 # Compute the Delta-V in each stage of a rocket
 
@@ -68,9 +69,12 @@ for part,info in parts_info.items():
 
 # Helpers to output table
 def output_row(cells):
-    print ' | '.join('% 10s' % x for x in cells)
+    print(' | '.join('% 10s' % x for x in cells))
+
+
 def output_divider(ncells):
-    print '-+-' . join(['-'*10] * ncells)
+    print('-+-'.join(['-' * 10] * ncells))
+
 
 # Output headings for table
 cols = ('Stage', 'Time', 'Mass', 'Dry Mass', 'Isp', 'Delta-V', 'TWR')

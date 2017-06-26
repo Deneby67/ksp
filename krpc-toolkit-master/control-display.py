@@ -1,6 +1,7 @@
-import krpc, curses, time, sys
-import numpy as np
-import numpy.linalg as la
+import curses
+import time
+
+import krpc
 
 # Set up curses
 stdscr = curses.initscr()
@@ -25,7 +26,7 @@ try:
     while True:
 
         stdscr.clear()
-        stdscr.addstr(0,0,'-- Controls --')
+        stdscr.addstr(0, 0, '-- Controls --')
 
         if sas():
             sas_text = 'SAS enabled (%s)' % str(sas_mode()).split('.')[1]
@@ -37,12 +38,12 @@ try:
             rcs_text = 'RCS disabled'
 
         # Output information
-        stdscr.addstr(2,0,'Pitch: {:+6.3f}'.format(pitch()))
-        stdscr.addstr(3,0,'Yaw:   {:+6.3f}'.format(yaw()))
-        stdscr.addstr(4,0,'Roll:  {:+6.3f}'.format(roll()))
-        stdscr.addstr(5,0,'Throttle: {:>3.0f}%'.format(throttle()*100.0))
-        stdscr.addstr(6,0,sas_text)
-        stdscr.addstr(7,0,rcs_text)
+        stdscr.addstr(2, 0, 'Pitch: {:+6.3f}'.format(pitch()))
+        stdscr.addstr(3, 0, 'Yaw:   {:+6.3f}'.format(yaw()))
+        stdscr.addstr(4, 0, 'Roll:  {:+6.3f}'.format(roll()))
+        stdscr.addstr(5, 0, 'Throttle: {:>3.0f}%'.format(throttle() * 100.0))
+        stdscr.addstr(6, 0, sas_text)
+        stdscr.addstr(7, 0, rcs_text)
 
         stdscr.refresh()
         time.sleep(0.1)

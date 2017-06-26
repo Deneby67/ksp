@@ -1,8 +1,4 @@
-import krpc
-import time
-import math
-from krpctoolkit.throttle import *
-from krpctoolkit.attitude import *
+from .throttle import *
 
 
 class Ascend(object):
@@ -41,7 +37,7 @@ class Ascend(object):
     def __call__(self):
         if self.altitude() < self.turn_start_altitude:
             self.auto_pilot.target_pitch_and_heading(90, 90)
-        elif self.turn_start_altitude < self.altitude() and self.altitude() < self.turn_end_altitude:
+        elif self.turn_start_altitude < self.altitude() < self.turn_end_altitude:
             frac = (self.altitude() - self.turn_start_altitude) / (self.turn_end_altitude - self.turn_start_altitude)
             self.auto_pilot.target_pitch_and_heading(90 * (1 - frac), 90)
         else:
@@ -52,5 +48,5 @@ class Ascend(object):
             self.auto_pilot.disengage()
             return True
         else:
-            self.throttle_controller()
+            self.throttle_controller
             return False

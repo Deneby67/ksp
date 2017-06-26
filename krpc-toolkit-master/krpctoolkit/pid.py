@@ -1,5 +1,7 @@
 import numpy as np
 
+
+# noinspection PyAttributeOutsideInit,PyAttributeOutsideInit,PyAttributeOutsideInit
 class PIDController(object):
     """ Robust, single parameter, proportional-integral-derivative controller
         http://brettbeauregard.com/blog/2011/04/improving-the-beginners-pid-introduction/ """

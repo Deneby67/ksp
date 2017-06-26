@@ -1,5 +1,7 @@
 from collections import deque
+
 import matplotlib.pyplot as plot
+
 
 class LivePlot(object):
     def __init__(self, series, defaultopt, window):
@@ -57,5 +59,6 @@ class LivePlot(object):
             self.data[name].popleft()
             self.lines[name][0].set_ydata(self.data[name])
 
-    def draw(self):
+    @staticmethod
+    def draw():
         plot.draw()

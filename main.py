@@ -1,5 +1,6 @@
 import math
 import time
+
 import krpc
 
 turn_start_altitude = 250
@@ -40,7 +41,7 @@ turn_angle = 0
 while True:
 
     # Gravity turn
-    if altitude() > turn_start_altitude and altitude() < turn_end_altitude:
+    if turn_start_altitude < altitude() < turn_end_altitude:
         frac = (altitude() - turn_start_altitude) / (turn_end_altitude - turn_start_altitude)
         new_turn_angle = frac * 90
         if abs(new_turn_angle - turn_angle) > 0.5:

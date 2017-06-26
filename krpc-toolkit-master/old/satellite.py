@@ -1,8 +1,6 @@
-import ascend
-import descend
-import krpc
-import threading
 import time
+
+import krpc
 
 conn = krpc.connect()
 vessel = conn.space_center.active_vessel
@@ -47,31 +45,31 @@ target_periapsis = 35000
 altitude = conn.add_stream(getattr, vessel.flight(), 'surface_altitude')
 periapsis = conn.add_stream(getattr, vessel.orbit, 'periapsis_altitude')
 
-print 'Orienting ship for braking burn'
+print('Orienting ship for braking burn')
 vessel.auto_pilot.set_direction((0,-1,0), reference_frame=vessel.orbital_reference_frame, wait=True)
 
-print 'Executing braking burn'
+print('Executing braking burn')
 vessel.control.throttle = 1
 while periapsis() > target_periapsis:
     pass
 vessel.control.throttle = 0
 time.sleep(1)
 
-print 'Uncovering heat shield'
+print('Uncovering heat shield')
 vessel.control.activate_next_stage()
 
-print 'Orienting ship for descent'
+print('Orienting ship for descent')
 vessel.auto_pilot.set_direction((0,1,0), reference_frame=vessel.surface_velocity_reference_frame, wait=True)
 
 while altitude() > 10000:
     time.sleep(1)
 vessel.auto_pilot.disengage()
 
-print 'Descending through atmosphere'
+print('Descending through atmosphere')
 while altitude() > 1000:
     time.sleep(1)
 vessel.auto_pilot.disengage()
 
-print 'Deploying chutes'
+print('Deploying chutes')
 for parachute in vessel.parts.parachutes:
     parachute.deploy()

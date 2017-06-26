@@ -1,4 +1,5 @@
-from krpctoolkit.controller import Controller
+from .controller import Controller
+
 
 class ThrottleMaxQController(Controller):
     def __init__(self, conn, vessel, max_q):
@@ -15,6 +16,7 @@ class ThrottleMaxQController(Controller):
 
     def mv(self, x):
         self.control.throttle = x
+
 
 class ThrottleSpeedController(Controller):
     def __init__(self, conn, vessel, max_speed):
