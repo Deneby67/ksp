@@ -202,7 +202,7 @@ class ExecuteNode(object):
         if not self.node:
             return True
 
-        burn_ut = self.node_ut - (self.burn_time / 2.)
+        burn_ut = self.node_ut - (self.burn_time / 2.0)
 
         # TODO: check vessel is pointing in the correct direction before warping
         #      and if the error is large, drop out of warp and reorient the vessel
@@ -227,7 +227,7 @@ class ExecuteNode(object):
             # Burn at full throttle
             self.vessel.control.throttle = 1
             return False
-        elif self.remaining_burn()[1] > 0:
+        elif self.remaining_burn()[1] > 0.005:
             # Burn at a throttle setting that maintains a
             # remaining burn time of t seconds
             t = 2

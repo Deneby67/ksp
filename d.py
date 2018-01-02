@@ -1,35 +1,33 @@
-import time
-
 import krpc
 
 from krpctoolkit.launch import Ascend
 from krpctoolkit.maneuver import circularize, ExecuteNode
-from krpctoolkit.staging import AutoStage
 
-target_altitude = 120000
 
-conn = krpc.connect(name='Kerbal-X')
-vessel = conn.space_center.active_vessel
+def launch():
+    target_altitude = 80000
 
-print('Launching')
-ascend = Ascend(conn, vessel, target_altitude)
-staging = AutoStage(conn, vessel)
-while not ascend():
-    staging()
-    time.sleep(0.1)
+    conn = krpc.connect(name='Kerbal-X')
+    vessel = conn.space_center.active_vessel
 
-print('Coasting out of atmosphere')
-altitude = conn.add_stream(getattr, vessel.flight(), 'mean_altitude')
-atmosphere_altitude = vessel.orbit.body.atmosphere_depth * 1.01
-while altitude() < atmosphere_altitude:
-    pass
+    print('Launching')
+    ascend = Ascend(conn, vessel, target_altitude, sas=True)
+    staging = ascend.staging
+    while not ascend():
+        staging()
 
-print('Circularizing')
-vessel.control.remove_nodes()
-node = circularize(conn, vessel)
-execute = ExecuteNode(conn, vessel, node)
-while not execute():
-    time.sleep(0.1)
-node.remove()
+    print('Coasting out of atmosphere')
+    altitude = ascend.altitude
+    atmosphere_altitude = vessel.orbit.body.atmosphere_depth * 1.05
+    while altitude() < atmosphere_altitude:
+        staging()
 
-print('Complete')
+    print('Circularizing')
+    vessel.control.remove_nodes()
+    node = circularize(conn, vessel)
+    execute = ExecuteNode(conn, vessel, node)
+    while not execute():
+        staging()
+    node.remove()
+
+    print('Complete')
