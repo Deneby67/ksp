@@ -8,4 +8,13 @@ class Controller(object):
         elif x > high:
             self.mv(0)
         else:
-            self.mv((high-x) / (high-low))
+            self.mv((high - x) / (high - low))
+
+    def pv(self):
+        raise NotImplementedError
+
+    def setpoint(self):
+        raise NotImplementedError
+
+    def mv(self, param):
+        raise NotImplementedError

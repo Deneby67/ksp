@@ -48,5 +48,4 @@ class Ascend(object):
             self.auto_pilot.disengage()
             return True
         else:
-            self.throttle_controller
             return False

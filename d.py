@@ -1,5 +1,8 @@
 import time
 
+import krpc
+
+from krpctoolkit.launch import Ascend
 from krpctoolkit.maneuver import circularize, ExecuteNode
 from krpctoolkit.staging import AutoStage
 
